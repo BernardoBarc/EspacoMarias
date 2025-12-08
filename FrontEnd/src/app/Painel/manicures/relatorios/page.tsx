@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { apiFetch } from "../../../../lib/api";
 
 interface Agendamento {
   _id: string;
@@ -25,8 +26,8 @@ export default function RelatoriosMensais() {
     setLoading(true);
     try {
       const [ags, ss] = await Promise.all([
-        fetch("agendamentos").then(r => r.json()),
-        fetch("servicos").then(r => r.json()),
+        apiFetch("api/users/agendamentos").then(r => r.json()),
+        apiFetch("api/users/servicos").then(r => r.json()),
       ]);
       setAgendamentos(ags);
       setServicos(ss);

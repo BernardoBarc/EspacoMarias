@@ -86,7 +86,7 @@ export default function Contato() {
 
     setLoading(true);
     try {
-      const response = await apiFetch('send-contact-email', {
+      const response = await apiFetch('api/users/send-contact-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

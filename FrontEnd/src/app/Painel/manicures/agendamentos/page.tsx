@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { apiFetch } from "../../../../lib/api";
 
 interface Agendamento {
   _id: string;
@@ -51,7 +52,7 @@ export default function VisualizarSolicitacoes() {
       console.log('Carregando clientes e serviços...');
       
       // Carregar clientes
-      fetch("users")
+      apiFetch("api/users/users")
         .then(res => res.json())
         .then(data => {
           console.log('Todos os usuários:', data);
@@ -80,7 +81,7 @@ export default function VisualizarSolicitacoes() {
 
       // Carregar serviços (se não estiverem carregados)
       if (servicos.length === 0) {
-        fetch("servicos")
+        apiFetch("api/users/servicos")
           .then(res => res.json())
           .then(data => {
             console.log('Serviços carregados:', data);
@@ -101,7 +102,7 @@ export default function VisualizarSolicitacoes() {
       if (atualizando) return; // Não verificar se estiver atualizando algo
       
       try {
-        const response = await fetch("agendamentos");
+        const response = await apiFetch("api/users/agendamentos");
         const agendamentos = await response.json();
         const userId = sessionStorage.getItem('userId');
         
@@ -131,9 +132,9 @@ export default function VisualizarSolicitacoes() {
     setLoading(true);
     try {
       const [ags, us, ss] = await Promise.all([
-        fetch("agendamentos").then(r => r.json()),
-        fetch("users").then(r => r.json()),
-        fetch("servicos").then(r => r.json()),
+        apiFetch("api/users/agendamentos").then(r => r.json()),
+        apiFetch("api/users/users").then(r => r.json()),
+        apiFetch("api/users/servicos").then(r => r.json()),
       ]);
       // Recupera o id da manicure logada
       const userId = sessionStorage.getItem('userId');
@@ -163,7 +164,7 @@ export default function VisualizarSolicitacoes() {
     try {
       const token = sessionStorage.getItem('token');
       
-      const response = await fetch(`atualizarAgendamentos/${id}`, {
+      const response = await apiFetch(`api/users/atualizarAgendamentos/${id}`, {
         method: "PUT",
         headers: { 
           "Content-Type": "application/json",
@@ -245,7 +246,7 @@ export default function VisualizarSolicitacoes() {
       
       const token = sessionStorage.getItem('token');
       
-      const response = await fetch('criarAgendamentos', {
+      const response = await apiFetch('api/users/criarAgendamentos', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',

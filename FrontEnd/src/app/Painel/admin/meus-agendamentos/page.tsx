@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { apiFetch } from "../../../../lib/api";
 
 interface Agendamento {
   _id: string;
@@ -30,9 +31,9 @@ export default function VisualizarAgendamentosAdmin() {
     setLoading(true);
     try {
       const [ags, us, ss] = await Promise.all([
-        fetch("agendamentos").then(r => r.json()),
-        fetch("users").then(r => r.json()),
-        fetch("servicos").then(r => r.json()),
+        apiFetch("api/users/agendamentos").then(r => r.json()),
+        apiFetch("api/users/users").then(r => r.json()),
+        apiFetch("api/users/servicos").then(r => r.json()),
       ]);
       // Recupera o id da admin logada
       const userId = sessionStorage.getItem('userId');
@@ -53,7 +54,7 @@ export default function VisualizarAgendamentosAdmin() {
   const atualizarStatus = async (id: string, novoStatus: string) => {
     setAtualizando(id);
     try {
-      const response = await fetch(`atualizarAgendamentos/${id}` , {
+      const response = await apiFetch(`api/users/atualizarAgendamentos/${id}` , {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: novoStatus }),

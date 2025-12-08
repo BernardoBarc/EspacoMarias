@@ -1,7 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Select from "react-select";
+import dynamic from "next/dynamic";
 import { apiFetch } from "../../../../lib/api";
+
+// Importar react-select dinamicamente para evitar erro de hidratação
+const Select = dynamic(() => import("react-select"), { ssr: false });
 
 interface Agendamento {
   _id: string;

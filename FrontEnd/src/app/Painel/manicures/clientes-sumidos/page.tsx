@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { apiFetch } from "../../../../lib/api";
 
 interface User { 
   _id: string; 
@@ -30,8 +31,8 @@ export default function ClientesInativos() {
     setLoading(true);
     try {
       const [clientesData, ags] = await Promise.all([
-        fetch("users?role=client").then(r => r.json()),
-        fetch("agendamentos").then(r => r.json()),
+        apiFetch("api/users/users?role=client").then(r => r.json()),
+        apiFetch("api/users/agendamentos").then(r => r.json()),
       ]);
       setClientes(clientesData);
       setAgendamentos(ags);

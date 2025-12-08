@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { apiFetch } from '../../../../lib/api';
 
 interface User {
   _id: string;
@@ -80,7 +81,7 @@ export default function EditarDados() {
     try {
       const userId = sessionStorage.getItem('userId') || '';
       if (!userId) throw new Error('Usuário não autenticado');
-      const response = await fetch(`users/${userId}`);
+      const response = await apiFetch(`api/users/users/${userId}`);
       if (!response.ok) throw new Error('Erro ao buscar dados do usuário');
       const userData = await response.json();
       setUser(userData);
@@ -103,7 +104,7 @@ export default function EditarDados() {
       // DEBUG: log do body antes de enviar para ajudar a diagnosticar 400
       console.log('DEBUG startEmailVerification body', body);
 
-      const res = await fetch('startEmailVerification', {
+      const res = await apiFetch('api/users/startEmailVerification', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
@@ -134,7 +135,7 @@ export default function EditarDados() {
     try {
       const body: any = { phone: user.phone };
       if (tempId) body.tempId = tempId;
-      const res = await fetch('startPhoneVerification', {
+      const res = await apiFetch('api/users/startPhoneVerification', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
@@ -157,7 +158,7 @@ export default function EditarDados() {
     if (!emailCode || emailCode.trim().length === 0) { setError('Informe o código'); return; }
     setLoading(true); setError(null);
     try {
-      const res = await fetch('confirmEmailCode', {
+      const res = await apiFetch('api/users/confirmEmailCode', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code: emailCode, tempId: emailTempId })
       });
       const data = await res.json();
@@ -167,7 +168,7 @@ export default function EditarDados() {
       const emailToVerify = verifiedEmail || user?.email;
       
       try {
-        const updateResponse = await fetch(`atualizarUser/${user?._id}`, {
+        const updateResponse = await apiFetch(`api/users/atualizarUser/${user?._id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: emailToVerify }),
@@ -198,7 +199,7 @@ export default function EditarDados() {
     if (!phoneCode || phoneCode.trim().length === 0) { setError('Informe o código'); return; }
     setLoading(true); setError(null);
     try {
-      const res = await fetch('confirmPhoneCode', {
+      const res = await apiFetch('api/users/confirmPhoneCode', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code: phoneCode, tempId: phoneTempId })
       });
       const data = await res.json();
@@ -208,7 +209,7 @@ export default function EditarDados() {
       const phoneToVerify = verifiedPhone || user?.phone;
       
       try {
-        const updateResponse = await fetch(`atualizarUser/${user?._id}`, {
+        const updateResponse = await apiFetch(`api/users/atualizarUser/${user?._id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ phone: phoneToVerify }),
@@ -291,7 +292,7 @@ export default function EditarDados() {
 
       // debug: log payload antes de enviar
       console.log('UPDATE payload', payload);
-      const response = await fetch(`atualizarUser/${user._id}`, {
+      const response = await apiFetch(`api/users/atualizarUser/${user._id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

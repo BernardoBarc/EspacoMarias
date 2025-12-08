@@ -5,6 +5,7 @@ export const fetchCache = "force-no-store";
 import React, { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import ChangePasswordModal from "../../../../components/ChangePasswordModal";
+import { apiFetch } from "../../../../lib/api";
 
 export default function Page() {
 return (
@@ -67,7 +68,7 @@ function EditarManicures() {
       const userIdQuery = pageUserId;
       const userId = userIdQuery || sessionStorage.getItem('userId');
       if (!userId) return;
-      const response = await fetch(`users/${userId}`);
+      const response = await apiFetch(`api/users/users/${userId}`);
       const data = await response.json();
       setManicure(data);
       setForm(data);
@@ -132,7 +133,7 @@ function EditarManicures() {
     }
     try {
       const targetId = tempId || pageUserId || manicure?._id || sessionStorage.getItem('userId');
-      const response = await fetch('startEmailVerification', {
+      const response = await apiFetch('api/users/startEmailVerification', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: form.email, tempId: targetId }),
@@ -151,7 +152,7 @@ function EditarManicures() {
   const confirmEmailCode = async () => {
     if (!emailTempId) return;
     try {
-      const response = await fetch('confirmEmailCode', {
+      const response = await apiFetch('api/users/confirmEmailCode', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code: emailCode, tempId: emailTempId }),
@@ -168,7 +169,7 @@ function EditarManicures() {
       
       // Atualizar automaticamente no backend
       try {
-        const updateResponse = await fetch(`atualizarUser/${manicure?._id}`, {
+        const updateResponse = await apiFetch(`api/users/atualizarUser/${manicure?._id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: emailToVerify }),
@@ -203,7 +204,7 @@ function EditarManicures() {
     }
     try {
       const targetId = tempId || pageUserId || manicure?._id || sessionStorage.getItem('userId');
-      const response = await fetch('startPhoneVerification', {
+      const response = await apiFetch('api/users/startPhoneVerification', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ phone: form.phone, tempId: targetId }),
@@ -222,7 +223,7 @@ function EditarManicures() {
   const confirmPhoneCode = async () => {
     if (!phoneTempId) return;
     try {
-      const response = await fetch('confirmPhoneCode', {
+      const response = await apiFetch('api/users/confirmPhoneCode', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code: phoneCode, tempId: phoneTempId }),
@@ -239,7 +240,7 @@ function EditarManicures() {
       
       // Atualizar automaticamente no backend
       try {
-        const updateResponse = await fetch(`atualizarUser/${manicure?._id}`, {
+        const updateResponse = await apiFetch(`api/users/atualizarUser/${manicure?._id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ phone: phoneToVerify }),
@@ -336,7 +337,7 @@ function EditarManicures() {
 
     try {
       console.log('UPDATE payload', payload);
-      const response = await fetch(`atualizarUser/${manicure._id}`, {
+      const response = await apiFetch(`api/users/atualizarUser/${manicure._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
