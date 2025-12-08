@@ -331,7 +331,7 @@ export default function DadosSalaoAdmin() {
                         value={dados.endereco}
                         onChange={handleInputChange}
                         className="w-full p-4 bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl text-white placeholder-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-all duration-300"
-                        placeholder="Digite o endereço completo do salão"
+                        placeholder="Digite o endereço completo do salão. Ex: Rua do Brasil 123 Centro Palmeira das Missões - RS"
                         required
                       />
                     </div>

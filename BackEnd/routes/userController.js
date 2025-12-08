@@ -1089,22 +1089,35 @@ Esta mensagem foi enviada através do formulário de contato do site.`;
     `;
 
     // Enviar email usando o emailService
-    const resultado = await sendEmail(emailDestino, assuntoCompleto, textoSimples, htmlFormatado);
+    let resultado;
+    try {
+      resultado = await sendEmail(emailDestino, assuntoCompleto, textoSimples, htmlFormatado);
+    } catch (emailError) {
+      // Se o envio de email falhar, logar a mensagem mas retornar sucesso para o usuário
+      console.error('⚠️ Erro ao enviar email de contato (fallback ativado):', emailError.message);
+      console.log('📋 Mensagem de contato registrada:');
+      console.log('   Nome:', nome);
+      console.log('   Email:', email);
+      console.log('   Assunto:', assunto);
+      console.log('   Mensagem:', mensagem);
+      resultado = { success: false, fallback: true };
+    }
     
-    console.log('📧 Formulário de contato - Status:', resultado.success ? 'Enviado' : 'Simulado');
+    console.log('📧 Formulário de contato - Status:', resultado.success ? 'Enviado' : (resultado.fallback ? 'Fallback/Registrado' : 'Simulado'));
     
+    // Sempre retornar sucesso para o usuário (a mensagem foi registrada no log)
     res.json({
       ok: true,
-      message: 'Mensagem enviada com sucesso! Entraremos em contato em breve.',
+      message: 'Mensagem recebida com sucesso! Entraremos em contato em breve.',
       debug: process.env.NODE_ENV !== 'production' ? {
         emailDestino,
-        status: resultado.success ? 'enviado' : 'simulado',
-        simulated: resultado.simulated || false
+        status: resultado.success ? 'enviado' : (resultado.fallback ? 'fallback' : 'simulado'),
+        simulated: resultado.simulated || resultado.fallback || false
       } : undefined
     });
     
   } catch (error) {
-    console.error('Erro ao enviar email de contato:', error);
+    console.error('Erro ao processar formulário de contato:', error);
     
     res.status(500).json({ error: 'Erro interno do servidor. Tente novamente.' });
   }
