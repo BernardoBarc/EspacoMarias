@@ -1,7 +1,9 @@
+import sgMail from '@sendgrid/mail';
 import nodemailer from 'nodemailer';
 
 // Configuração do transporter
 let transporter = null;
+let useSendGridAPI = false;
 
 // Verificar se as variáveis de ambiente estão configuradas
 const emailConfig = {
@@ -20,21 +22,14 @@ console.log('📧 Configuração de email:', {
   sendgridApiKey: emailConfig.sendgridApiKey ? 'Configurado' : 'Faltando'
 });
 
-// Configurar transporter baseado no serviço
+// Configurar baseado no serviço
 if (emailConfig.service === 'sendgrid' && emailConfig.sendgridApiKey && emailConfig.from) {
-  // Configuração SendGrid
-  transporter = nodemailer.createTransport({
-    host: 'smtp.sendgrid.net',
-    port: 587,
-    secure: false,
-    auth: {
-      user: 'apikey',
-      pass: emailConfig.sendgridApiKey
-    }
-  });
-  console.log('✅ SendGrid configurado com sucesso');
+  // Usar API HTTP do SendGrid (sem SMTP - mais confiável no Railway)
+  sgMail.setApiKey(emailConfig.sendgridApiKey);
+  useSendGridAPI = true;
+  console.log('✅ SendGrid API configurado com sucesso (via HTTP)');
 } else if (emailConfig.service === 'gmail' && emailConfig.user && emailConfig.pass && emailConfig.from) {
-  // Configuração Gmail
+  // Configuração Gmail via SMTP
   transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -53,15 +48,42 @@ if (emailConfig.service === 'sendgrid' && emailConfig.sendgridApiKey && emailCon
 } else {
   console.log('⚠️  Email não configurado - Modo simulação ativado');
   console.log('   Para usar email real, configure:');
-  console.log('   - EMAIL_SERVICE: "gmail"');
-  console.log('   - EMAIL_USER: seu email Gmail');
-  console.log('   - EMAIL_PASS: senha de app do Gmail');
-  console.log('   - EMAIL_FROM: email do remetente');
+  console.log('   - EMAIL_SERVICE: "sendgrid"');
+  console.log('   - SENDGRID_API_KEY: sua API key do SendGrid');
+  console.log('   - EMAIL_FROM: email do remetente verificado no SendGrid');
 }
 
 // Função para enviar email
 export const sendEmail = async (to, subject, text, html = null) => {
   try {
+    // Se usa SendGrid API (HTTP - mais confiável)
+    if (useSendGridAPI) {
+      const msg = {
+        to: to,
+        from: {
+          email: emailConfig.from,
+          name: 'Espaço Marias'
+        },
+        subject: subject,
+        text: text,
+        html: html || text,
+      };
+
+      console.log(`📤 Enviando email via SendGrid API para: ${to}`);
+      console.log(`📝 Assunto: ${subject}`);
+      
+      const result = await sgMail.send(msg);
+      
+      console.log(`✅ Email enviado com sucesso via SendGrid API!`);
+      console.log(`✅ Status: ${result[0].statusCode}`);
+
+      return {
+        success: true,
+        messageId: result[0].headers['x-message-id'] || 'sendgrid_' + Date.now(),
+        message: 'Email enviado com sucesso'
+      };
+    }
+
     // Se não tem transporter configurado, simular envio
     if (!transporter) {
       console.log('📧 [SIMULAÇÃO] Enviando email para:', to);
@@ -73,6 +95,7 @@ export const sendEmail = async (to, subject, text, html = null) => {
       };
     }
 
+    // Usar nodemailer (Gmail ou outro SMTP)
     const mailOptions = {
       from: `"Espaço Marias" <${emailConfig.from}>`,
       to: to,
@@ -82,7 +105,7 @@ export const sendEmail = async (to, subject, text, html = null) => {
       replyTo: emailConfig.from
     };
 
-    console.log(`📤 Enviando email para: ${to}`);
+    console.log(`📤 Enviando email via SMTP para: ${to}`);
     console.log(`📝 Assunto: ${subject}`);
     
     const result = await transporter.sendMail(mailOptions);
@@ -98,6 +121,12 @@ export const sendEmail = async (to, subject, text, html = null) => {
 
   } catch (error) {
     console.error('❌ Erro ao enviar email:', error.message);
+    
+    // Log detalhado para SendGrid
+    if (error.response) {
+      console.error('❌ SendGrid erro body:', error.response.body);
+    }
+    
     console.error('❌ Detalhes do erro:', {
       code: error.code,
       command: error.command,
