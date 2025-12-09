@@ -172,7 +172,7 @@ export default function AdminServicos() {
     setError(null);
 
     try {
-      const response = await fetch(`servicos/${id}`, {
+      const response = await apiFetch(`api/users/servicos/${id}`, {
         method: "DELETE",
       });
 

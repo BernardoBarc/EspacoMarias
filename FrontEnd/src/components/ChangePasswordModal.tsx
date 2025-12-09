@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { apiFetch } from "../lib/api";
 
 interface ChangePasswordModalProps {
   isOpen: boolean;
@@ -48,7 +49,7 @@ export default function ChangePasswordModal({
     setLoading(true);
 
     try {
-      const response = await fetch("change-password", {
+      const response = await apiFetch("api/users/change-password", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

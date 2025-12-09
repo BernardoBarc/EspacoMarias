@@ -57,7 +57,6 @@ export default function AgendamentoClient() {
     fetchAll();
   }, []);
 
-  // Altere o fetchAll para buscar todos os usuários e filtrar manicures e admins
   const fetchAll = async () => {
     try {
       const [ags, us, ss] = await Promise.all([
