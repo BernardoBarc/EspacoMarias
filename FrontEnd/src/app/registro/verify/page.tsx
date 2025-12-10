@@ -196,7 +196,7 @@ function VerifyPageContent() {
         return;
       }
       
-      setMessage("Código de verificação enviado por email (simulado)");
+      setMessage("Código de verificação enviado por email (verifique sua caixa SPAM).");
       // salvar timestamp de envio em sessionStorage para controlar reenvio
       try {
         const pendingRaw = sessionStorage.getItem('pendingRegistration');
@@ -276,7 +276,7 @@ function VerifyPageContent() {
       });
       const data = await res.json();
       if (!res.ok) return setMessage(data.error || "Erro ao reenviar código SMS");
-      setMessage("Código SMS reenviado com sucesso!");
+      setMessage("Código SMS reenviado com sucesso! (verifique sua caixa de SPAM)");
       setPhoneCooldown(60);
       try {
         const pendingRaw = sessionStorage.getItem('pendingRegistration');
@@ -309,7 +309,7 @@ function VerifyPageContent() {
       });
       const data = await res.json();
       if (!res.ok) return setMessage(data.error || "Erro ao reenviar código de email");
-      setMessage("Código de verificação reenviado por email (simulado)");
+      setMessage("Código de verificação reenviado por email (verifique sua caixa SPAM).");
       setEmailCooldown(60);
       try {
         const pendingRaw = sessionStorage.getItem('pendingRegistration');
@@ -565,7 +565,7 @@ function VerifyPageContent() {
                               setUser((prev: any) => ({...prev, phone: normalized, phonePending: normalized}));
                               setTimeout(() => {
                                 handleResendPhone();
-                                setMessage("Código SMS enviado para o novo número");
+                                setMessage("Código SMS enviado para o novo número (verifique sua caixa SPAM).");
                               }, 100);
                             }
                           }}
@@ -650,7 +650,7 @@ function VerifyPageContent() {
                             setEmailVal(novoEmail.trim());
                             setTimeout(() => {
                               handleStartEmail();
-                              setMessage("Código enviado para o novo email");
+                              setMessage("Código enviado para o novo email (verifique sua caixa SPAM).");
                             }, 100);
                           } else if (novoEmail && novoEmail.trim() !== "" && !novoEmail.includes('@')) {
                             alert("Por favor, digite um email válido.");

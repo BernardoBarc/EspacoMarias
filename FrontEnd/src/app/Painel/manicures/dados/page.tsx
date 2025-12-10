@@ -365,29 +365,29 @@ function EditarManicures() {
   return (
     <main className="min-h-screen font-sans flex flex-col bg-gradient-to-br from-[#222] to-[#111] text-white relative overflow-hidden">
       {/* Decorações de fundo */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-pink-500/10 rounded-full -translate-x-48 -translate-y-48 blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full translate-x-48 translate-y-48 blur-3xl"></div>
-      <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-500/5 rounded-full -translate-x-32 -translate-y-32 blur-2xl"></div>
+      <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-pink-500/10 rounded-full -translate-x-32 sm:-translate-x-48 -translate-y-32 sm:-translate-y-48 blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-purple-500/10 rounded-full translate-x-32 sm:translate-x-48 translate-y-32 sm:translate-y-48 blur-3xl"></div>
+      <div className="absolute top-1/2 left-1/2 w-48 sm:w-64 h-48 sm:h-64 bg-blue-500/5 rounded-full -translate-x-24 sm:-translate-x-32 -translate-y-24 sm:-translate-y-32 blur-2xl"></div>
 
       {/* Header com logo */}
-      <header className="w-full py-8 px-6 relative z-10">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-4">
+      <header className="w-full py-4 sm:py-6 lg:py-8 px-4 sm:px-6 relative z-10">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
+          <div className="flex items-center gap-3 sm:gap-4">
             <div className="relative group">
               {/* Glow externo animado */}
-              <div className="absolute -inset-2 bg-gradient-to-r from-pink-500/40 via-purple-500/40 to-pink-500/40 rounded-3xl blur-lg group-hover:blur-xl transition-all duration-500 animate-pulse"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-pink-500/40 via-purple-500/40 to-pink-500/40 rounded-2xl sm:rounded-3xl blur-lg group-hover:blur-xl transition-all duration-500 animate-pulse"></div>
               
               {/* Container principal do logo */}
-              <div className="relative bg-gradient-to-br from-[#111] via-[#1a1a1a] to-[#222] p-3 rounded-2xl border-2 border-pink-400/40 group-hover:border-pink-400/70 shadow-2xl transition-all duration-500">
+              <div className="relative bg-gradient-to-br from-[#111] via-[#1a1a1a] to-[#222] p-2 sm:p-3 rounded-xl sm:rounded-2xl border-2 border-pink-400/40 group-hover:border-pink-400/70 shadow-2xl transition-all duration-500">
                 {/* Reflexo interno */}
-                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 via-transparent to-purple-500/10 rounded-2xl"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 via-transparent to-purple-500/10 rounded-xl sm:rounded-2xl"></div>
                 
                 {/* Imagem do logo */}
                 <div className="relative">
                   <img 
                     src="/logo.png" 
                     alt="Espaço Marias" 
-                    className="w-16 h-16 object-contain filter drop-shadow-lg transition-all duration-500" 
+                    className="w-12 h-12 sm:w-16 sm:h-16 object-contain filter drop-shadow-lg transition-all duration-500" 
                     style={{
                       filter: 'brightness(1.2) contrast(1.1) saturate(1.2) hue-rotate(10deg)'
                     }}
@@ -395,24 +395,24 @@ function EditarManicures() {
                 </div>
                 
                 {/* Pontos decorativos nos cantos */}
-                <div className="absolute -top-1 -left-1 w-3 h-3 bg-gradient-to-br from-pink-400 to-pink-500 rounded-full shadow-lg shadow-pink-500/50"></div>
-                <div className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-br from-purple-400 to-purple-500 rounded-full shadow-lg shadow-purple-500/50"></div>
-                <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-gradient-to-br from-blue-400 to-blue-500 rounded-full shadow-lg shadow-blue-500/50"></div>
+                <div className="absolute -top-1 -left-1 w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-br from-pink-400 to-pink-500 rounded-full shadow-lg shadow-pink-500/50"></div>
+                <div className="absolute -top-1 -right-1 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-br from-purple-400 to-purple-500 rounded-full shadow-lg shadow-purple-500/50"></div>
+                <div className="absolute -bottom-1 -left-1 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-br from-blue-400 to-blue-500 rounded-full shadow-lg shadow-blue-500/50"></div>
               </div>
             </div>
             
             <div>
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-pink-300 bg-clip-text text-transparent">
+              <h2 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-pink-300 bg-clip-text text-transparent">
                 Espaço Marias
               </h2>
-              <p className="text-sm text-gray-400 font-medium">Meus Dados Pessoais</p>
+              <p className="text-xs sm:text-sm text-gray-400 font-medium">Meus Dados Pessoais</p>
             </div>
           </div>
 
           {/* Botão de voltar */}
           <a 
             href="/home" 
-            className="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105 shadow-lg"
+            className="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all transform hover:scale-105 shadow-lg text-sm sm:text-base"
           >
             🏠 Voltar ao Painel
           </a>
@@ -420,33 +420,33 @@ function EditarManicures() {
       </header>
 
       {/* Conteúdo principal */}
-      <div className="flex-1 px-6 py-8 relative z-10">
+      <div className="flex-1 px-4 sm:px-6 py-4 sm:py-8 relative z-10">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold text-center mb-2 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-2 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
             👤 Meus Dados
           </h1>
-          <p className="text-center text-gray-300 mb-8">
+          <p className="text-center text-gray-300 mb-6 sm:mb-8 text-sm sm:text-base">
             Gerencie suas informações pessoais e profissionais de forma segura
           </p>
 
           {/* Container Principal Premium */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             
             {/* Coluna da Foto - Premium */}
             <div className="lg:col-span-1">
-              <div className="bg-gradient-to-br from-[#111]/80 to-[#222]/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 relative overflow-hidden p-8">
+              <div className="bg-gradient-to-br from-[#111]/80 to-[#222]/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-2xl border border-white/10 relative overflow-hidden p-4 sm:p-6 lg:p-8">
                 {/* Decoração interna */}
-                <div className="absolute top-0 right-0 w-16 h-16 bg-pink-500/10 rounded-full -translate-y-8 translate-x-8"></div>
-                <div className="absolute bottom-0 left-0 w-12 h-12 bg-purple-500/10 rounded-full translate-y-6 -translate-x-6"></div>
+                <div className="absolute top-0 right-0 w-12 sm:w-16 h-12 sm:h-16 bg-pink-500/10 rounded-full -translate-y-6 sm:-translate-y-8 translate-x-6 sm:translate-x-8"></div>
+                <div className="absolute bottom-0 left-0 w-10 sm:w-12 h-10 sm:h-12 bg-purple-500/10 rounded-full translate-y-5 sm:translate-y-6 -translate-x-5 sm:-translate-x-6"></div>
                 
                 <div className="relative z-10 flex flex-col items-center">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-3 h-3 bg-pink-400 rounded-full animate-pulse shadow-lg shadow-pink-400/50"></div>
-                    <h2 className="text-pink-400 font-bold text-xl">📸 Foto do Perfil</h2>
+                  <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-pink-400 rounded-full animate-pulse shadow-lg shadow-pink-400/50"></div>
+                    <h2 className="text-pink-400 font-bold text-lg sm:text-xl">📸 Foto do Perfil</h2>
                   </div>
                   
                   {/* Container da foto com efeitos premium */}
-                  <div className="relative group mb-6">
+                  <div className="relative group mb-4 sm:mb-6">
                     {/* Glow externo */}
                     <div className="absolute -inset-4 bg-gradient-to-r from-pink-500/30 via-purple-500/30 to-blue-500/30 rounded-full blur-lg group-hover:blur-xl transition-all duration-500"></div>
                     

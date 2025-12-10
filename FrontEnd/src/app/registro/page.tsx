@@ -162,7 +162,7 @@ export default function Registro() {
         setPhoneSent(true);
         // salvar tempId retornado pelo backend para usar nas próximas etapas
         if (data && data.tempId) setTempId(data.tempId);
-        setMessage("Código enviado por SMS (simulado)");
+        setMessage("Código enviado por SMS (verifique sua caixa SPAM).");
         return data && data.tempId ? data.tempId : null;
       } else {
         setMessage(data.error || "Erro ao enviar código de telefone");
@@ -229,7 +229,7 @@ export default function Registro() {
         }
         // backend pode retornar tempId (ex.: encontrou usuário existente) — atualizar se houver
         if (data && data.tempId) setTempId(data.tempId);
-        setMessage("Código de verificação enviado por email (simulado)");
+        setMessage("Código de verificação enviado por email (verifique sua caixa SPAM).");
         return true;
       } else {
         setMessage(data.error || "Erro ao enviar código de email");

@@ -121,8 +121,8 @@ export default function EditarDados() {
       const data = parsed || {};
       setEmailTempId(data.tempId);
       setEmailVerificationPending(true);
-      setVerifiedEmail(user.email); // SEGURANÇA: Guardar o email que foi enviado para verificação
-      setInfo(`Código de verificação enviado para ${user.email}. ATENÇÃO: Não altere o email durante a verificação!`);
+      setVerifiedEmail(user.email);
+      setInfo(`Código de verificação enviado para ${user.email}. ATENÇÃO: Não altere o email durante a verificação! Verifique também sua caixa de SPAM.`);
       return data;
     } catch (e: any) {
       setError(e.message || 'Erro ao iniciar verificação do email');
@@ -144,8 +144,8 @@ export default function EditarDados() {
       if (!res.ok) throw new Error(data.error || 'Erro ao iniciar verificação do telefone');
       setPhoneTempId(data.tempId);
       setPhoneVerificationPending(true);
-      setVerifiedPhone(user.phone); // SEGURANÇA: Guardar o telefone que foi enviado para verificação
-      setInfo(`Código de verificação enviado para ${user.phone}. ATENÇÃO: Não altere o telefone durante a verificação!`);
+      setVerifiedPhone(user.phone);
+      setInfo(`Código de verificação enviado para ${user.phone}. ATENÇÃO: Não altere o telefone durante a verificação! Verifique também sua caixa de SPAM.`);
       return data;
     } catch (e: any) {
       setError(e.message || 'Erro ao iniciar verificação do telefone');
@@ -268,23 +268,18 @@ export default function EditarDados() {
           setLoading(false);
           return;
         }
-        // informar sem usar setError (não queremos ocultar o formulário)
         setInfo('Códigos enviados para os novos contatos. Insira-os abaixo e confirme antes de salvar.');
         setLoading(false);
         return;
       }
 
-      // Construir payload enviando apenas os campos alterados para permitir atualizações individuais
       const payload: any = {};
-      // Sempre enviar nome e endereço (geralmente seguros)
       payload.name = user.name;
       payload.endereco = user.endereco || '';
-      // Enviar email apenas se alterado
       if (user.email !== originalEmail) {
         payload.email = user.email;
-        payload.emailVerified = true; // marca como verificado por conta do fluxo concluído
+        payload.emailVerified = true;
       }
-      // Enviar telefone apenas se alterado
       if (user.phone !== originalPhone) {
         payload.phone = user.phone;
         payload.phoneVerified = true;
@@ -331,20 +326,20 @@ export default function EditarDados() {
     return (
       <main className="min-h-screen font-sans flex flex-col bg-gradient-to-br from-[#222] to-[#111] text-white relative overflow-hidden">
         {/* Decorações de fundo */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-pink-500/10 rounded-full -translate-x-48 -translate-y-48 blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full translate-x-48 translate-y-48 blur-3xl"></div>
+        <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-pink-500/10 rounded-full -translate-x-32 sm:-translate-x-48 -translate-y-32 sm:-translate-y-48 blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-purple-500/10 rounded-full translate-x-32 sm:translate-x-48 translate-y-32 sm:translate-y-48 blur-3xl"></div>
         
-        <div className="flex-1 flex items-center justify-center px-6 py-8 relative z-10">
-          <div className="bg-gradient-to-br from-red-500/10 to-pink-500/10 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-red-500/20 w-full max-w-2xl">
-            <div className="text-center py-8">
-              <div className="w-16 h-16 mx-auto mb-4 bg-red-500/20 rounded-full flex items-center justify-center">
-                <span className="text-3xl">❌</span>
+        <div className="flex-1 flex items-center justify-center px-4 sm:px-6 py-6 sm:py-8 relative z-10">
+          <div className="bg-gradient-to-br from-red-500/10 to-pink-500/10 backdrop-blur-xl p-6 sm:p-8 rounded-2xl sm:rounded-3xl shadow-2xl border border-red-500/20 w-full max-w-2xl">
+            <div className="text-center py-6 sm:py-8">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 bg-red-500/20 rounded-full flex items-center justify-center">
+                <span className="text-2xl sm:text-3xl">❌</span>
               </div>
-              <h2 className="text-2xl font-bold text-white mb-4">✏️ Editar Meus Dados</h2>
-              <p className="text-red-400 text-lg font-medium mb-6">{error}</p>
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">✏️ Editar Meus Dados</h2>
+              <p className="text-red-400 text-base sm:text-lg font-medium mb-4 sm:mb-6">{error}</p>
               <a 
                 href="/Painel/cliente/dados" 
-                className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105 shadow-lg"
+                className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all transform hover:scale-105 shadow-lg text-sm sm:text-base"
               >
                 🔙 Voltar para Meus Dados
               </a>
@@ -359,17 +354,17 @@ export default function EditarDados() {
     return (
       <main className="min-h-screen font-sans flex flex-col bg-gradient-to-br from-[#222] to-[#111] text-white relative overflow-hidden">
         {/* Decorações de fundo */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-pink-500/10 rounded-full -translate-x-48 -translate-y-48 blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full translate-x-48 translate-y-48 blur-3xl"></div>
+        <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-pink-500/10 rounded-full -translate-x-32 sm:-translate-x-48 -translate-y-32 sm:-translate-y-48 blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-purple-500/10 rounded-full translate-x-32 sm:translate-x-48 translate-y-32 sm:translate-y-48 blur-3xl"></div>
         
-        <div className="flex-1 flex items-center justify-center px-6 py-8 relative z-10">
-          <div className="bg-gradient-to-br from-blue-500/10 to-indigo-500/10 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-blue-500/20 w-full max-w-2xl">
-            <div className="text-center py-8">
-              <div className="w-16 h-16 mx-auto mb-4 bg-blue-500/20 rounded-full flex items-center justify-center animate-pulse">
-                <span className="text-3xl">⏳</span>
+        <div className="flex-1 flex items-center justify-center px-4 sm:px-6 py-6 sm:py-8 relative z-10">
+          <div className="bg-gradient-to-br from-blue-500/10 to-indigo-500/10 backdrop-blur-xl p-6 sm:p-8 rounded-2xl sm:rounded-3xl shadow-2xl border border-blue-500/20 w-full max-w-2xl">
+            <div className="text-center py-6 sm:py-8">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 bg-blue-500/20 rounded-full flex items-center justify-center animate-pulse">
+                <span className="text-2xl sm:text-3xl">⏳</span>
               </div>
-              <h2 className="text-2xl font-bold text-white mb-4">✏️ Editar Meus Dados</h2>
-              <p className="text-blue-400 text-lg font-medium">Carregando dados...</p>
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">✏️ Editar Meus Dados</h2>
+              <p className="text-blue-400 text-base sm:text-lg font-medium">Carregando dados...</p>
             </div>
           </div>
         </div>
@@ -380,29 +375,29 @@ export default function EditarDados() {
   return (
     <main className="min-h-screen font-sans flex flex-col bg-gradient-to-br from-[#222] to-[#111] text-white relative overflow-hidden">
       {/* Decorações de fundo */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-pink-500/10 rounded-full -translate-x-48 -translate-y-48 blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full translate-x-48 translate-y-48 blur-3xl"></div>
-      <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-500/5 rounded-full -translate-x-32 -translate-y-32 blur-2xl"></div>
+      <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-pink-500/10 rounded-full -translate-x-32 sm:-translate-x-48 -translate-y-32 sm:-translate-y-48 blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-purple-500/10 rounded-full translate-x-32 sm:translate-x-48 translate-y-32 sm:translate-y-48 blur-3xl"></div>
+      <div className="absolute top-1/2 left-1/2 w-48 sm:w-64 h-48 sm:h-64 bg-blue-500/5 rounded-full -translate-x-24 sm:-translate-x-32 -translate-y-24 sm:-translate-y-32 blur-2xl"></div>
 
       {/* Header com logo */}
-      <header className="w-full py-8 px-6 relative z-10">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-4">
+      <header className="w-full py-4 sm:py-6 lg:py-8 px-4 sm:px-6 relative z-10">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
+          <div className="flex items-center gap-3 sm:gap-4">
             <div className="relative group">
               {/* Glow externo animado */}
-              <div className="absolute -inset-2 bg-gradient-to-r from-pink-500/40 via-purple-500/40 to-pink-500/40 rounded-3xl blur-lg group-hover:blur-xl transition-all duration-500 animate-pulse"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-pink-500/40 via-purple-500/40 to-pink-500/40 rounded-2xl sm:rounded-3xl blur-lg group-hover:blur-xl transition-all duration-500 animate-pulse"></div>
               
               {/* Container principal do logo */}
-              <div className="relative bg-gradient-to-br from-[#111] via-[#1a1a1a] to-[#222] p-3 rounded-2xl border-2 border-pink-400/40 group-hover:border-pink-400/70 shadow-2xl transition-all duration-500">
+              <div className="relative bg-gradient-to-br from-[#111] via-[#1a1a1a] to-[#222] p-2 sm:p-3 rounded-xl sm:rounded-2xl border-2 border-pink-400/40 group-hover:border-pink-400/70 shadow-2xl transition-all duration-500">
                 {/* Reflexo interno */}
-                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 via-transparent to-purple-500/10 rounded-2xl"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 via-transparent to-purple-500/10 rounded-xl sm:rounded-2xl"></div>
                 
                 {/* Imagem do logo */}
                 <div className="relative">
                   <img 
                     src="/logo.png" 
                     alt="Espaço Marias" 
-                    className="w-16 h-16 object-contain filter drop-shadow-lg transition-all duration-500" 
+                    className="w-12 h-12 sm:w-16 sm:h-16 object-contain filter drop-shadow-lg transition-all duration-500" 
                     style={{
                       filter: 'brightness(1.2) contrast(1.1) saturate(1.2) hue-rotate(10deg)'
                     }}
@@ -410,24 +405,24 @@ export default function EditarDados() {
                 </div>
                 
                 {/* Pontos decorativos nos cantos */}
-                <div className="absolute -top-1 -left-1 w-3 h-3 bg-gradient-to-br from-pink-400 to-pink-500 rounded-full shadow-lg shadow-pink-500/50"></div>
-                <div className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-br from-purple-400 to-purple-500 rounded-full shadow-lg shadow-purple-500/50"></div>
-                <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-gradient-to-br from-blue-400 to-blue-500 rounded-full shadow-lg shadow-blue-500/50"></div>
+                <div className="absolute -top-1 -left-1 w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-br from-pink-400 to-pink-500 rounded-full shadow-lg shadow-pink-500/50"></div>
+                <div className="absolute -top-1 -right-1 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-br from-purple-400 to-purple-500 rounded-full shadow-lg shadow-purple-500/50"></div>
+                <div className="absolute -bottom-1 -left-1 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-br from-blue-400 to-blue-500 rounded-full shadow-lg shadow-blue-500/50"></div>
               </div>
             </div>
             
             <div>
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-pink-300 bg-clip-text text-transparent">
+              <h2 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-pink-300 bg-clip-text text-transparent">
                 Espaço Marias
               </h2>
-              <p className="text-sm text-gray-400 font-medium">Editar Dados Pessoais</p>
+              <p className="text-xs sm:text-sm text-gray-400 font-medium">Editar Dados Pessoais</p>
             </div>
           </div>
 
           {/* Botão de voltar */}
           <a 
             href="/Painel/cliente/dados" 
-            className="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105 shadow-lg"
+            className="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all transform hover:scale-105 shadow-lg text-sm sm:text-base"
           >
             🔙 Voltar aos Dados
           </a>
@@ -435,31 +430,31 @@ export default function EditarDados() {
       </header>
 
       {/* Conteúdo principal */}
-      <div className="flex-1 flex items-center justify-center px-6 py-8 relative z-10">
-        <div className="bg-gradient-to-br from-[#111]/80 to-[#222]/80 backdrop-blur-xl p-10 rounded-3xl shadow-2xl w-full max-w-4xl border border-pink-500/20 relative">
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 py-4 sm:py-8 relative z-10">
+        <div className="bg-gradient-to-br from-[#111]/80 to-[#222]/80 backdrop-blur-xl p-4 sm:p-6 lg:p-10 rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-4xl border border-pink-500/20 relative">
           {/* Decoração interna */}
-          <div className="absolute top-0 right-0 w-20 h-20 bg-pink-500/10 rounded-full -translate-y-10 translate-x-10"></div>
-          <div className="absolute bottom-0 left-0 w-16 h-16 bg-purple-500/10 rounded-full translate-y-8 -translate-x-8"></div>
+          <div className="absolute top-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-pink-500/10 rounded-full -translate-y-8 sm:-translate-y-10 translate-x-8 sm:translate-x-10"></div>
+          <div className="absolute bottom-0 left-0 w-12 sm:w-16 h-12 sm:h-16 bg-purple-500/10 rounded-full translate-y-6 sm:translate-y-8 -translate-x-6 sm:-translate-x-8"></div>
           
           <div className="relative z-10">
-            <h1 className="text-4xl font-bold text-center mb-2 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-2 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
               ✏️ Editar Meus Dados
             </h1>
-            <p className="text-center text-gray-300 mb-8">
+            <p className="text-center text-gray-300 mb-6 sm:mb-8 text-sm sm:text-base">
               Altere suas informações pessoais com segurança
             </p>
             
             {/* Mensagem informativa */}
             {info && (
-              <div className="mb-6 p-4 bg-amber-500/20 backdrop-blur-sm border border-amber-500/50 rounded-xl text-amber-200 text-center font-medium">
+              <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-amber-500/20 backdrop-blur-sm border border-amber-500/50 rounded-lg sm:rounded-xl text-amber-200 text-center font-medium text-sm sm:text-base">
                 ⚠️ {info}
               </div>
             )}
 
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
               {/* Campo Nome */}
-              <div className="bg-gradient-to-r from-blue-500/10 to-indigo-500/10 p-6 rounded-xl border border-blue-500/30 backdrop-blur-sm">
-                <label className="block text-blue-400 font-semibold mb-3 text-sm flex items-center gap-2">
+              <div className="bg-gradient-to-r from-blue-500/10 to-indigo-500/10 p-4 sm:p-6 rounded-lg sm:rounded-xl border border-blue-500/30 backdrop-blur-sm">
+                <label className="block text-blue-400 font-semibold mb-2 sm:mb-3 text-xs sm:text-sm flex items-center gap-2">
                   👤 Nome Completo
                 </label>
                 <input
@@ -467,14 +462,14 @@ export default function EditarDados() {
                   name="name"
                   value={user.name}
                   onChange={handleChange}
-                  className="w-full p-4 bg-white/10 backdrop-blur-sm border border-gray-600 rounded-xl text-white focus:border-blue-500 focus:outline-none transition-colors"
+                  className="w-full p-3 sm:p-4 bg-white/10 backdrop-blur-sm border border-gray-600 rounded-lg sm:rounded-xl text-white focus:border-blue-500 focus:outline-none transition-colors text-sm sm:text-base"
                   required
                 />
               </div>
 
               {/* Campo Email */}
-              <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 p-6 rounded-xl border border-purple-500/30 backdrop-blur-sm">
-                <label className="block text-purple-400 font-semibold mb-3 text-sm flex items-center gap-2">
+              <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 p-4 sm:p-6 rounded-lg sm:rounded-xl border border-purple-500/30 backdrop-blur-sm">
+                <label className="block text-purple-400 font-semibold mb-2 sm:mb-3 text-xs sm:text-sm flex items-center gap-2">
                   📧 E-mail
                 </label>
                 <input
@@ -489,7 +484,7 @@ export default function EditarDados() {
                     handleChange(e);
                   }}
                   onBlur={handleEmailBlur}
-                  className={`w-full p-4 backdrop-blur-sm border rounded-xl transition-colors ${
+                  className={`w-full p-3 sm:p-4 backdrop-blur-sm border rounded-lg sm:rounded-xl transition-colors text-sm sm:text-base ${
                     emailVerificationPending
                       ? 'bg-amber-100/20 text-amber-200 cursor-not-allowed border-amber-500'
                       : 'bg-white/10 text-white border-gray-600 focus:border-purple-500 focus:outline-none'

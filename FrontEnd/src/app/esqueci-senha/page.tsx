@@ -39,7 +39,7 @@ export default function EsqueciSenha() {
       const data = await res.json();
       
       if (res.ok) {
-        setMessage("Código de recuperação enviado para seu email (simulado).");
+        setMessage("Código de recuperação enviado para seu email (verifique sua caixa de SPAM).");
         setStep("code");
       } else {
         setMessage(data.error || "Email não encontrado.");
@@ -143,7 +143,7 @@ export default function EsqueciSenha() {
       const data = await res.json();
       
       if (res.ok) {
-        setMessage("Novo código enviado para seu email.");
+        setMessage("Novo código enviado para seu email. (verifique sua caixa de SPAM)");
       } else {
         setMessage(data.error || "Erro ao reenviar código.");
       }
