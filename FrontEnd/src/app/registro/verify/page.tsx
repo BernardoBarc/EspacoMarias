@@ -419,29 +419,29 @@ function VerifyPageContent() {
   return (
     <main className="min-h-screen font-sans flex flex-col items-center justify-between bg-gradient-to-br from-[#222] to-[#111] text-white relative overflow-hidden">
       {/* Decorações de fundo */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-pink-500/10 rounded-full -translate-x-48 -translate-y-48 blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full translate-x-48 translate-y-48 blur-3xl"></div>
-      <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-500/5 rounded-full -translate-x-32 -translate-y-32 blur-2xl"></div>
+      <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-pink-500/10 rounded-full -translate-x-32 sm:-translate-x-48 -translate-y-32 sm:-translate-y-48 blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-purple-500/10 rounded-full translate-x-32 sm:translate-x-48 translate-y-32 sm:translate-y-48 blur-3xl"></div>
+      <div className="absolute top-1/2 left-1/2 w-48 sm:w-64 h-48 sm:h-64 bg-blue-500/5 rounded-full -translate-x-24 sm:-translate-x-32 -translate-y-24 sm:-translate-y-32 blur-2xl"></div>
 
       {/* Header com logo */}
-      <header className="w-full py-8 px-6 relative z-10">
+      <header className="w-full py-4 sm:py-6 lg:py-8 px-4 sm:px-6 relative z-10">
         <div className="max-w-7xl mx-auto flex justify-center">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             <div className="relative group">
               {/* Glow externo animado */}
-              <div className="absolute -inset-2 bg-gradient-to-r from-pink-500/40 via-purple-500/40 to-pink-500/40 rounded-3xl blur-lg group-hover:blur-xl transition-all duration-500 animate-pulse"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-pink-500/40 via-purple-500/40 to-pink-500/40 rounded-2xl sm:rounded-3xl blur-lg group-hover:blur-xl transition-all duration-500 animate-pulse"></div>
               
               {/* Container principal do logo */}
-              <div className="relative bg-gradient-to-br from-[#111] via-[#1a1a1a] to-[#222] p-3 rounded-2xl border-2 border-pink-400/40 group-hover:border-pink-400/70 shadow-2xl transition-all duration-500">
+              <div className="relative bg-gradient-to-br from-[#111] via-[#1a1a1a] to-[#222] p-2 sm:p-3 rounded-xl sm:rounded-2xl border-2 border-pink-400/40 group-hover:border-pink-400/70 shadow-2xl transition-all duration-500">
                 {/* Reflexo interno */}
-                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 via-transparent to-purple-500/10 rounded-2xl"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 via-transparent to-purple-500/10 rounded-xl sm:rounded-2xl"></div>
                 
                 {/* Imagem do logo */}
                 <div className="relative">
                   <img 
                     src="/logo.png" 
                     alt="Espaço Marias" 
-                    className="w-16 h-16 object-contain filter drop-shadow-lg transition-all duration-500" 
+                    className="w-12 h-12 sm:w-16 sm:h-16 object-contain filter drop-shadow-lg transition-all duration-500" 
                     style={{
                       filter: 'brightness(1.2) contrast(1.1) saturate(1.2) hue-rotate(10deg)'
                     }}
@@ -449,39 +449,39 @@ function VerifyPageContent() {
                 </div>
                 
                 {/* Pontos decorativos nos cantos */}
-                <div className="absolute -top-1 -left-1 w-3 h-3 bg-gradient-to-br from-pink-400 to-pink-500 rounded-full shadow-lg shadow-pink-500/50"></div>
-                <div className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-br from-purple-400 to-purple-500 rounded-full shadow-lg shadow-purple-500/50"></div>
-                <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-gradient-to-br from-blue-400 to-blue-500 rounded-full shadow-lg shadow-blue-500/50"></div>
+                <div className="absolute -top-1 -left-1 w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-br from-pink-400 to-pink-500 rounded-full shadow-lg shadow-pink-500/50"></div>
+                <div className="absolute -top-1 -right-1 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-br from-purple-400 to-purple-500 rounded-full shadow-lg shadow-purple-500/50"></div>
+                <div className="absolute -bottom-1 -left-1 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-br from-blue-400 to-blue-500 rounded-full shadow-lg shadow-blue-500/50"></div>
               </div>
             </div>
             
             <div>
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-pink-300 bg-clip-text text-transparent">
+              <h2 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-pink-300 bg-clip-text text-transparent">
                 Espaço Marias
               </h2>
-              <p className="text-sm text-gray-400 font-medium">Beleza & Bem-estar</p>
+              <p className="text-xs sm:text-sm text-gray-400 font-medium">Beleza & Bem-estar</p>
             </div>
           </div>
         </div>
       </header>
 
       {/* Conteúdo principal */}
-      <div className="flex-1 flex items-center justify-center px-6 relative z-10">
-        <div className="bg-gradient-to-br from-[#111]/80 to-[#222]/80 backdrop-blur-xl p-10 rounded-3xl shadow-2xl w-full max-w-2xl border border-pink-500/20 relative">
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 relative z-10 w-full">
+        <div className="bg-gradient-to-br from-[#111]/80 to-[#222]/80 backdrop-blur-xl p-5 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-2xl border border-pink-500/20 relative">
           {/* Decoração interna */}
-          <div className="absolute top-0 right-0 w-20 h-20 bg-pink-500/10 rounded-full -translate-y-10 translate-x-10"></div>
-          <div className="absolute bottom-0 left-0 w-16 h-16 bg-purple-500/10 rounded-full translate-y-8 -translate-x-8"></div>
+          <div className="absolute top-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-pink-500/10 rounded-full -translate-y-8 sm:-translate-y-10 translate-x-8 sm:translate-x-10"></div>
+          <div className="absolute bottom-0 left-0 w-12 sm:w-16 h-12 sm:h-16 bg-purple-500/10 rounded-full translate-y-6 sm:translate-y-8 -translate-x-6 sm:-translate-x-8"></div>
           
           <div className="relative z-10">
-            <h1 className="text-4xl font-bold text-center mb-6 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-4 sm:mb-6 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
               🔐 Verificação de Conta
             </h1>
             {!tempId && (
-              <div className="bg-red-500/20 border-2 border-red-500/40 rounded-xl p-6 text-center backdrop-blur-sm">
-                <p className="text-red-300 font-medium">⚠️ ID de verificação ausente. Volte ao registro e reinicie o processo.</p>
+              <div className="bg-red-500/20 border-2 border-red-500/40 rounded-lg sm:rounded-xl p-4 sm:p-6 text-center backdrop-blur-sm">
+                <p className="text-red-300 font-medium text-sm sm:text-base">⚠️ ID de verificação ausente. Volte ao registro e reinicie o processo.</p>
                 <button
                   onClick={() => router.push('/registro')}
-                  className="mt-4 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-2 px-4 rounded-lg transition-all"
+                  className="mt-4 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-2 px-4 rounded-lg transition-all text-sm sm:text-base"
                 >
                   Voltar ao Registro
                 </button>
@@ -490,19 +490,19 @@ function VerifyPageContent() {
 
             {tempId && (
               <div>
-                <p className="text-center text-gray-300 mb-8">
+                <p className="text-center text-gray-300 mb-6 sm:mb-8 text-sm sm:text-base">
                   Complete a verificação em duas etapas para finalizar seu cadastro
                 </p>
 
                 {/* Alerta para dados duplicados */}
                 {tempId?.includes('simulated') && (
-                  <div className="bg-red-500/20 border-2 border-red-500/40 rounded-xl p-6 text-center backdrop-blur-sm mb-6">
-                    <div className="text-4xl mb-3">⚠️</div>
-                    <h3 className="text-xl font-bold text-yellow-300 mb-2">Dados Já Cadastrados</h3>
-                    <p className="text-gray-300 text-sm mb-4">Este telefone ou email já está sendo usado por outra conta.</p>
+                  <div className="bg-red-500/20 border-2 border-red-500/40 rounded-lg sm:rounded-xl p-4 sm:p-6 text-center backdrop-blur-sm mb-6">
+                    <div className="text-3xl sm:text-4xl mb-3">⚠️</div>
+                    <h3 className="text-lg sm:text-xl font-bold text-yellow-300 mb-2">Dados Já Cadastrados</h3>
+                    <p className="text-gray-300 text-xs sm:text-sm mb-4">Este telefone ou email já está sendo usado por outra conta.</p>
                     <button
                       onClick={() => router.push('/registro')}
-                      className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105"
+                      className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all transform hover:scale-105 text-sm sm:text-base"
                     >
                       Usar Dados Diferentes
                     </button>
@@ -510,31 +510,31 @@ function VerifyPageContent() {
                 )}
 
                 {step === 'phone' && (
-                  <div className="bg-gradient-to-br from-blue-500/10 to-indigo-500/10 p-8 rounded-xl border border-blue-500/30 backdrop-blur-sm">
-                    <div className="flex items-center justify-center mb-6">
-                      <div className="text-4xl mr-3">📱</div>
-                      <h3 className="text-xl font-bold text-white">Verificação de Telefone</h3>
+                  <div className="bg-gradient-to-br from-blue-500/10 to-indigo-500/10 p-4 sm:p-6 lg:p-8 rounded-lg sm:rounded-xl border border-blue-500/30 backdrop-blur-sm">
+                    <div className="flex items-center justify-center mb-4 sm:mb-6">
+                      <div className="text-3xl sm:text-4xl mr-2 sm:mr-3">📱</div>
+                      <h3 className="text-lg sm:text-xl font-bold text-white">Verificação de Telefone</h3>
                     </div>
                     
-                    <p className="text-center text-gray-300 mb-6">
+                    <p className="text-center text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base">
                       Enviamos um código SMS para o seu número de telefone
                     </p>
 
                     {/* Campo telefone com status */}
-                    <div className="bg-gradient-to-r from-[#222] to-[#333] p-4 rounded-xl mb-6 border border-blue-500/20">
-                      <label className="block text-blue-400 font-semibold mb-2">📞 Telefone Cadastrado</label>
-                      <div className="flex items-center justify-between bg-white/5 p-4 rounded-lg border border-gray-600">
+                    <div className="bg-gradient-to-r from-[#222] to-[#333] p-3 sm:p-4 rounded-lg sm:rounded-xl mb-4 sm:mb-6 border border-blue-500/20">
+                      <label className="block text-blue-400 font-semibold mb-2 text-sm sm:text-base">📞 Telefone Cadastrado</label>
+                      <div className="flex items-center justify-between bg-white/5 p-3 sm:p-4 rounded-lg border border-gray-600">
                         {tempId?.includes('simulated') ? (
-                          <span className="text-yellow-300">⚠️ Número já cadastrado</span>
+                          <span className="text-yellow-300 text-sm sm:text-base">⚠️ Número já cadastrado</span>
                         ) : (
-                          <span className="text-white text-lg font-semibold">{formatPhoneForDisplay(user?.phone || user?.phonePending || '') || '—'}</span>
+                          <span className="text-white text-base sm:text-lg font-semibold">{formatPhoneForDisplay(user?.phone || user?.phonePending || '') || '—'}</span>
                         )}
                       </div>
                       
                       {tempId?.includes('simulated') ? (
                         <button 
                           onClick={() => router.push('/registro')}
-                          className="w-full mt-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-4 rounded-xl transition-all transform hover:scale-105"
+                          className="w-full mt-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-2.5 sm:py-3 px-4 rounded-lg sm:rounded-xl transition-all transform hover:scale-105 text-sm sm:text-base"
                         >
                           🔙 Usar Número Diferente
                         </button>
@@ -570,7 +570,7 @@ function VerifyPageContent() {
                             }
                           }}
                           disabled={loading}
-                          className="w-full mt-3 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 disabled:from-gray-500 disabled:to-gray-600 text-white font-bold py-3 px-4 rounded-xl transition-all transform hover:scale-105 disabled:hover:scale-100"
+                          className="w-full mt-3 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 disabled:from-gray-500 disabled:to-gray-600 text-white font-bold py-2.5 sm:py-3 px-4 rounded-lg sm:rounded-xl transition-all transform hover:scale-105 disabled:hover:scale-100 text-sm sm:text-base"
                         >
                           ✏️ Editar Telefone
                         </button>
@@ -578,26 +578,26 @@ function VerifyPageContent() {
                     </div>
 
                     {!tempId?.includes('simulated') && (
-                      <div className="space-y-4">
+                      <div className="space-y-3 sm:space-y-4">
                         <div>
-                          <label className="block text-pink-400 font-semibold mb-2">💬 Código SMS</label>
+                          <label className="block text-pink-400 font-semibold mb-2 text-sm sm:text-base">💬 Código SMS</label>
                           <input 
                             value={phoneCode} 
                             onChange={(e)=>setPhoneCode(e.target.value)} 
                             placeholder="Digite os 6 dígitos do SMS"
                             maxLength={6}
-                            className="w-full p-4 bg-white/10 backdrop-blur-sm border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none transition-colors text-center text-xl font-semibold tracking-wide" 
+                            className="w-full p-3 sm:p-4 bg-white/10 backdrop-blur-sm border border-gray-600 rounded-lg sm:rounded-xl text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none transition-colors text-center text-lg sm:text-xl font-semibold tracking-wide" 
                           />
                         </div>
 
                         <button 
                           onClick={handleConfirmPhone} 
                           disabled={loading || phoneCode.length < 3} 
-                          className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 disabled:from-gray-500 disabled:to-gray-600 text-white font-bold py-4 px-6 rounded-xl transition-all transform hover:scale-105 disabled:hover:scale-100 shadow-lg"
+                          className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 disabled:from-gray-500 disabled:to-gray-600 text-white font-bold py-3 sm:py-4 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all transform hover:scale-105 disabled:hover:scale-100 shadow-lg text-sm sm:text-base"
                         >
                           {loading ? (
                             <div className="flex items-center justify-center">
-                              <div className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"></div>
+                              <div className="animate-spin w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full mr-2"></div>
                               Verificando...
                             </div>
                           ) : (
@@ -608,7 +608,7 @@ function VerifyPageContent() {
                         <button 
                           onClick={handleResendPhone} 
                           disabled={loading || phoneCooldown > 0} 
-                          className={`w-full font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105 ${
+                          className={`w-full font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all transform hover:scale-105 text-sm sm:text-base ${
                             phoneCooldown > 0 
                               ? 'bg-gray-600 text-gray-400 cursor-not-allowed' 
                               : 'bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white'
@@ -626,21 +626,21 @@ function VerifyPageContent() {
                 )}
 
                 {step === 'email' && (
-                  <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 p-8 rounded-xl border border-purple-500/30 backdrop-blur-sm">
-                    <div className="flex items-center justify-center mb-6">
-                      <div className="text-4xl mr-3">📧</div>
-                      <h3 className="text-xl font-bold text-white">Verificação de Email</h3>
+                  <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 p-4 sm:p-6 lg:p-8 rounded-lg sm:rounded-xl border border-purple-500/30 backdrop-blur-sm">
+                    <div className="flex items-center justify-center mb-4 sm:mb-6">
+                      <div className="text-3xl sm:text-4xl mr-2 sm:mr-3">📧</div>
+                      <h3 className="text-lg sm:text-xl font-bold text-white">Verificação de Email</h3>
                     </div>
                     
-                    <p className="text-center text-gray-300 mb-6">
+                    <p className="text-center text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base">
                       Enviamos um código de verificação para o seu email
                     </p>
 
                     {/* Campo email com status */}
-                    <div className="bg-gradient-to-r from-[#222] to-[#333] p-4 rounded-xl mb-6 border border-purple-500/20">
-                      <label className="block text-purple-400 font-semibold mb-2">✉️ Email Cadastrado</label>
-                      <div className="flex items-center justify-between bg-white/5 p-4 rounded-lg border border-gray-600">
-                        <span className="text-white text-sm font-medium truncate">{emailVal || '—'}</span>
+                    <div className="bg-gradient-to-r from-[#222] to-[#333] p-3 sm:p-4 rounded-lg sm:rounded-xl mb-4 sm:mb-6 border border-purple-500/20">
+                      <label className="block text-purple-400 font-semibold mb-2 text-sm sm:text-base">✉️ Email Cadastrado</label>
+                      <div className="flex items-center justify-between bg-white/5 p-3 sm:p-4 rounded-lg border border-gray-600">
+                        <span className="text-white text-xs sm:text-sm font-medium truncate">{emailVal || '—'}</span>
                       </div>
                       
                       <button 
@@ -657,32 +657,32 @@ function VerifyPageContent() {
                           }
                         }}
                         disabled={loading}
-                        className="w-full mt-3 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 disabled:from-gray-500 disabled:to-gray-600 text-white font-bold py-3 px-4 rounded-xl transition-all transform hover:scale-105 disabled:hover:scale-100"
+                        className="w-full mt-3 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 disabled:from-gray-500 disabled:to-gray-600 text-white font-bold py-2.5 sm:py-3 px-4 rounded-lg sm:rounded-xl transition-all transform hover:scale-105 disabled:hover:scale-100 text-sm sm:text-base"
                       >
                         ✏️ Editar Email
                       </button>
                     </div>
 
-                    <div className="space-y-4">
+                    <div className="space-y-3 sm:space-y-4">
                       <div>
-                        <label className="block text-pink-400 font-semibold mb-2">🔐 Código de Verificação</label>
+                        <label className="block text-pink-400 font-semibold mb-2 text-sm sm:text-base">🔐 Código de Verificação</label>
                         <input 
                           value={emailCode} 
                           onChange={(e)=>setEmailCode(e.target.value)} 
                           placeholder="Digite o código do email"
                           maxLength={6}
-                          className="w-full p-4 bg-white/10 backdrop-blur-sm border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none transition-colors text-center text-xl font-semibold tracking-wide" 
+                          className="w-full p-3 sm:p-4 bg-white/10 backdrop-blur-sm border border-gray-600 rounded-lg sm:rounded-xl text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none transition-colors text-center text-lg sm:text-xl font-semibold tracking-wide" 
                         />
                       </div>
 
                       <button 
                         onClick={handleConfirmEmail} 
                         disabled={loading || emailCode.length < 3} 
-                        className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 disabled:from-gray-500 disabled:to-gray-600 text-white font-bold py-4 px-6 rounded-xl transition-all transform hover:scale-105 disabled:hover:scale-100 shadow-lg"
+                        className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 disabled:from-gray-500 disabled:to-gray-600 text-white font-bold py-3 sm:py-4 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all transform hover:scale-105 disabled:hover:scale-100 shadow-lg text-sm sm:text-base"
                       >
                         {loading ? (
                           <div className="flex items-center justify-center">
-                            <div className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"></div>
+                            <div className="animate-spin w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full mr-2"></div>
                             Verificando...
                           </div>
                         ) : (
@@ -693,7 +693,7 @@ function VerifyPageContent() {
                       <button 
                         onClick={handleResendEmail} 
                         disabled={loading || emailCooldown > 0} 
-                        className={`w-full font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105 ${
+                        className={`w-full font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all transform hover:scale-105 text-sm sm:text-base ${
                           emailCooldown > 0 
                             ? 'bg-gray-600 text-gray-400 cursor-not-allowed' 
                             : 'bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white'
@@ -712,7 +712,7 @@ function VerifyPageContent() {
 
 
                 {message && (
-                  <div className={`mt-6 p-6 rounded-xl backdrop-blur-sm ${
+                  <div className={`mt-4 sm:mt-6 p-4 sm:p-6 rounded-lg sm:rounded-xl backdrop-blur-sm ${
                     message.includes('sucesso') || message.includes('Finalizando') || message.includes('criada')
                       ? 'bg-green-500/20 border-2 border-green-500/40'
                       : message.includes('Erro') || message.includes('inválido')
@@ -720,7 +720,7 @@ function VerifyPageContent() {
                       : 'bg-yellow-500/20 border-2 border-yellow-500/40'
                   }`}>
                     <div className="flex items-center justify-center">
-                      <div className={`text-2xl mr-3 ${
+                      <div className={`text-xl sm:text-2xl mr-2 sm:mr-3 ${
                         message.includes('sucesso') || message.includes('Finalizando') || message.includes('criada')
                           ? 'text-green-400'
                           : message.includes('Erro') || message.includes('inválido')
@@ -731,7 +731,7 @@ function VerifyPageContent() {
                          message.includes('Finalizando') ? '⚡' :
                          message.includes('Erro') || message.includes('inválido') ? '❌' : '⚠️'}
                       </div>
-                      <p className={`text-center font-medium ${
+                      <p className={`text-center font-medium text-sm sm:text-base ${
                         message.includes('sucesso') || message.includes('Finalizando') || message.includes('criada')
                           ? 'text-green-300'
                           : message.includes('Erro') || message.includes('inválido')
@@ -743,7 +743,7 @@ function VerifyPageContent() {
                     </div>
                     {message.includes('Finalizando') && (
                       <div className="flex justify-center mt-4">
-                        <div className="animate-spin rounded-full h-6 w-6 border-2 border-green-400 border-t-transparent"></div>
+                        <div className="animate-spin rounded-full h-5 w-5 sm:h-6 sm:w-6 border-2 border-green-400 border-t-transparent"></div>
                       </div>
                     )}
                   </div>
@@ -755,10 +755,10 @@ function VerifyPageContent() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-r from-[#111] to-[#222] border-t border-pink-500/20 py-6 relative z-10">
-        <div className="max-w-6xl mx-auto px-6">
+      <footer className="bg-gradient-to-r from-[#111] to-[#222] border-t border-pink-500/20 py-4 sm:py-6 relative z-10 w-full">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-gray-400 text-sm mb-4 md:mb-0">
+            <div className="text-gray-400 text-xs sm:text-sm mb-4 md:mb-0 text-center md:text-left">
               © 2025 Espaço Marias. Todos os direitos reservados.
             </div>
           </div>
