@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { apiFetch } from '../../lib/api';
+import PublicHeader from '../../components/PublicHeader';
+import PublicFooter from '../../components/PublicFooter';
 
 interface DadosSalao {
   telefone: string;
@@ -44,160 +46,35 @@ export default function Home() {
 
   return (
     <main className="min-h-screen font-sans flex flex-col items-center justify-between bg-gradient-to-br from-[#222] to-[#111] text-white">
-      <header className="w-full shadow-2xl sticky top-0 z-10 bg-gradient-to-r from-[#111]/95 to-[#222]/95 backdrop-blur-lg text-white border-b border-pink-500/20 relative overflow-hidden">
-        {/* Elementos decorativos no header */}
-        <div className="absolute top-0 right-0 w-24 h-24 bg-pink-500/10 rounded-full -translate-y-12 translate-x-12"></div>
-        <div className="absolute bottom-0 left-1/4 w-16 h-16 bg-purple-500/10 rounded-full translate-y-8"></div>
-        
-        <nav className="relative z-10 max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-          {/* Logo/Brand Section */}
-          <div className="flex items-center gap-4">
-            <div className="relative group cursor-pointer">
-              {/* Glow externo animado */}
-              <div className="absolute -inset-2 bg-gradient-to-r from-pink-500/40 via-purple-500/40 to-pink-500/40 rounded-3xl blur-lg group-hover:blur-xl transition-all duration-500 animate-pulse group-hover:animate-none"></div>
-              
-              {/* Container principal do logo */}
-              <div className="relative bg-gradient-to-br from-[#111] via-[#1a1a1a] to-[#222] p-3 rounded-2xl border-2 border-pink-400/40 group-hover:border-pink-400/70 shadow-2xl group-hover:shadow-pink-500/25 transition-all duration-500">
-                {/* Reflexo interno */}
-                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 via-transparent to-purple-500/10 rounded-2xl"></div>
-                
-                {/* Imagem do logo com filtros aprimorados */}
-                <div className="relative">
-                  <img 
-                    src="/logo.png" 
-                    alt="Espaço Marias" 
-                    className="w-20 h-20 object-contain filter drop-shadow-lg group-hover:drop-shadow-2xl transition-all duration-500 group-hover:scale-110 group-hover:brightness-125 group-hover:contrast-125 group-hover:saturate-110" 
-                    style={{
-                      filter: 'brightness(1.2) contrast(1.1) saturate(1.2) hue-rotate(10deg)'
-                    }}
-                  />
-                  
-                  {/* Overlay de brilho no hover */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-pink-400/20 to-purple-400/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </div>
-                
-                {/* Pontos decorativos nos cantos */}
-                <div className="absolute -top-1 -left-1 w-3 h-3 bg-gradient-to-br from-pink-400 to-pink-500 rounded-full shadow-lg shadow-pink-500/50"></div>
-                <div className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-br from-purple-400 to-purple-500 rounded-full shadow-lg shadow-purple-500/50"></div>
-                <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-gradient-to-br from-blue-400 to-blue-500 rounded-full shadow-lg shadow-blue-500/50"></div>
-              </div>
-            </div>
-            
-            {/* Brand name aprimorado */}
-            <div className="hidden md:block">
-              <h2 className="text-xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-pink-300 bg-clip-text text-transparent leading-tight">
-                Espaço Marias
-              </h2>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-0.5 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full"></div>
-                <p className="text-xs text-gray-400 font-medium">Beleza & Bem-estar</p>
-                <div className="w-3 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"></div>
-              </div>
-            </div>
-          </div>
+      <PublicHeader currentPage="servicos" />
 
-          {/* Navigation Links */}
-          <ul className="hidden lg:flex items-center gap-6 xl:gap-8">
-            <li>
-              <a 
-                href="/" 
-                className="relative px-3 py-2 font-semibold text-white hover:text-pink-300 transition-all duration-300 group"
-              >
-                <span className="relative z-10">Início</span>
-                <div className="absolute inset-0 bg-pink-500/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-              </a>
-            </li>
-            <li>
-              <a 
-                href="login" 
-                className="relative px-3 py-2 font-semibold text-white hover:text-pink-300 transition-all duration-300 group"
-              >
-                <span className="relative z-10">Login</span>
-                <div className="absolute inset-0 bg-pink-500/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-              </a>
-            </li>
-            <li>
-              <a 
-                href="manicures" 
-                className="relative px-3 py-2 font-semibold text-white hover:text-pink-300 transition-all duration-300 group"
-              >
-                <span className="relative z-10">Manicures</span>
-                <div className="absolute inset-0 bg-pink-500/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-              </a>
-            </li>
-            <li>
-              <a 
-                href="servicos" 
-                className="relative px-3 py-2 font-semibold text-pink-400 hover:text-pink-300 transition-all duration-300 group"
-              >
-                <span className="relative z-10">Serviços</span>
-                <div className="absolute inset-0 bg-pink-500/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-              </a>
-            </li>
-            <li>
-              <a 
-                href="contato" 
-                className="relative bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold px-5 py-2 rounded-xl shadow-lg transition-all transform hover:scale-105 hover:shadow-xl"
-              >
-                Contato
-              </a>
-            </li>
-          </ul>
-
-          {/* Navigation compacta para tablets */}
-          <ul className="hidden md:flex lg:hidden items-center gap-4">
-            <li><a href="/" className="text-white hover:text-pink-300 font-semibold">Início</a></li>
-            <li><a href="login" className="text-white hover:text-pink-300 font-semibold">Login</a></li>
-            <li><a href="manicures" className="text-white hover:text-pink-300 font-semibold">Manicures</a></li>
-            <li><a href="servicos" className="text-pink-400 hover:text-pink-300 font-semibold">Serviços</a></li>
-            <li>
-              <a 
-                href="contato" 
-                className="bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold px-4 py-2 rounded-lg hover:scale-105 transition-transform"
-              >
-                Contato
-              </a>
-            </li>
-          </ul>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button className="text-white hover:text-pink-400 transition-colors">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-              </svg>
-            </button>
-          </div>
-        </nav>
-      </header>
-
-      <section className="w-full max-w-7xl flex flex-col items-center mt-12 mb-16 px-6">
+      <section className="w-full max-w-7xl flex flex-col items-center mt-6 sm:mt-12 mb-8 sm:mb-16 px-4 sm:px-6">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-[#111] to-[#222] rounded-3xl shadow-2xl p-10 mb-12 w-full relative overflow-hidden border border-[#333]/30">
+        <div className="bg-gradient-to-r from-[#111] to-[#222] rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-10 mb-8 sm:mb-12 w-full relative overflow-hidden border border-[#333]/30">
           {/* Decoração de fundo */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-pink-500/20 rounded-full -translate-y-8 translate-x-8"></div>
-          <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-500/20 rounded-full translate-y-6 -translate-x-6"></div>
+          <div className="absolute top-0 right-0 w-20 sm:w-32 h-20 sm:h-32 bg-pink-500/20 rounded-full -translate-y-8 translate-x-8"></div>
+          <div className="absolute bottom-0 left-0 w-16 sm:w-24 h-16 sm:h-24 bg-purple-500/20 rounded-full translate-y-6 -translate-x-6"></div>
           
           <div className="relative z-10 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight">
               ✨ Nossos <span className="text-pink-400">Serviços</span> ✨
             </h1>
             
             <div className="max-w-3xl mx-auto">
-              <p className="text-lg md:text-xl text-gray-200 leading-relaxed mb-8 px-4">
+              <p className="text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed mb-6 sm:mb-8 px-2 sm:px-4">
                 Descubra uma variedade completa de serviços para cuidar das suas unhas com carinho e profissionalismo. 
                 Cada serviço é realizado com produtos de qualidade e técnicas modernas.
               </p>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                <div className="bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-xl p-6 backdrop-blur-sm border border-pink-400/30 hover:border-pink-400/50 transition-all">
-                  <div className="text-3xl mb-3">💅</div>
-                  <h3 className="text-white font-bold mb-2">Manicure Completa</h3>
-                  <p className="text-gray-300 text-sm">Cuidado completo das unhas das mãos com esmaltação</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-6 sm:mt-8">
+                <div className="bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-xl p-4 sm:p-6 backdrop-blur-sm border border-pink-400/30 hover:border-pink-400/50 transition-all">
+                  <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">💅</div>
+                  <h3 className="text-white font-bold mb-1 sm:mb-2 text-sm sm:text-base">Manicure Completa</h3>
+                  <p className="text-gray-300 text-xs sm:text-sm">Cuidado completo das unhas das mãos com esmaltação</p>
                 </div>
                 
-                <div className="bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-xl p-6 backdrop-blur-sm border border-purple-400/30 hover:border-purple-400/50 transition-all">
-                  <div className="text-3xl mb-3">🦶</div>
+                <div className="bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-xl p-4 sm:p-6 backdrop-blur-sm border border-purple-400/30 hover:border-purple-400/50 transition-all">
+                  <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">🦶</div>
                   <h3 className="text-white font-bold mb-2">Pedicure Premium</h3>
                   <p className="text-gray-300 text-sm">Tratamento especializado para os pés com hidratação</p>
                 </div>
