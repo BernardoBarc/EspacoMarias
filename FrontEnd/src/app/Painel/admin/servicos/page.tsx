@@ -352,7 +352,7 @@ export default function AdminServicos() {
                             </span>
                           </td>
                           <td className="px-6 py-4">
-                            <span className="bg-purple-500/20 px-3 py-1 rounded-full text-purple-300 font-semibold">
+                            <span className="bg-purple-500/20 px-3 py-1 rounded-full text-purple-300 font-semibold whitespace-nowrap">
                               {servico.tempoAproximado}
                             </span>
                           </td>
@@ -427,28 +427,28 @@ export default function AdminServicos() {
                     />
                   </div>
 
-                  <div className="bg-gradient-to-br from-purple-500/10 to-blue-500/10 p-6 rounded-2xl border border-purple-400/30">
-                    <h3 className="text-purple-400 font-bold mb-4 flex items-center gap-2">
+                  <div className="bg-gradient-to-br from-purple-500/10 to-blue-500/10 p-4 sm:p-6 rounded-2xl border border-purple-400/30">
+                    <h3 className="text-purple-400 font-bold mb-4 flex items-center gap-2 text-sm sm:text-base">
                       <span>⏱️</span>
                       Tempo de Duração do Serviço
                     </h3>
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
                       <div>
-                        <label className="text-white text-sm block mb-2 font-semibold">Horas</label>
+                        <label className="text-white text-xs sm:text-sm block mb-2 font-semibold">Horas</label>
                         <input
                           type="number"
                           min="0"
                           max="12"
                           placeholder="0"
-                          className="w-full p-3 border-2 border-white/20 rounded-xl bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm text-white placeholder-white/60 focus:border-purple-400/50 focus:outline-none focus:ring-2 focus:ring-purple-400/20 transition-all"
+                          className="w-full p-2.5 sm:p-3 border-2 border-white/20 rounded-xl bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm text-white placeholder-white/60 focus:border-purple-400/50 focus:outline-none focus:ring-2 focus:ring-purple-400/20 transition-all text-sm sm:text-base"
                           value={tempoHoras}
                           onChange={(e) => setTempoHoras(e.target.value)}
                         />
                       </div>
                       <div>
-                        <label className="text-white text-sm block mb-2 font-semibold">Minutos</label>
+                        <label className="text-white text-xs sm:text-sm block mb-2 font-semibold">Minutos</label>
                         <select
-                          className="w-full p-3 border-2 border-white/20 rounded-xl bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm text-white focus:border-purple-400/50 focus:outline-none focus:ring-2 focus:ring-purple-400/20 transition-all"
+                          className="w-full p-2.5 sm:p-3 border-2 border-white/20 rounded-xl bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm text-white focus:border-purple-400/50 focus:outline-none focus:ring-2 focus:ring-purple-400/20 transition-all text-sm sm:text-base"
                           value={tempoMinutos}
                           onChange={(e) => setTempoMinutos(e.target.value)}
                         >
@@ -466,9 +466,9 @@ export default function AdminServicos() {
                           <option value="55" className="bg-gray-800">55</option>
                         </select>
                       </div>
-                      <div>
-                        <label className="text-white text-sm block mb-2 font-semibold">Tempo Total</label>
-                        <div className="w-full p-3 border-2 border-purple-400/30 rounded-xl bg-gradient-to-r from-purple-500/10 to-blue-500/10 text-purple-300 min-h-[48px] flex items-center font-medium">
+                      <div className="col-span-2 sm:col-span-1">
+                        <label className="text-white text-xs sm:text-sm block mb-2 font-semibold">Tempo Total</label>
+                        <div className="w-full p-2.5 sm:p-3 border-2 border-purple-400/30 rounded-xl bg-gradient-to-r from-purple-500/10 to-blue-500/10 text-purple-300 min-h-[42px] sm:min-h-[48px] flex items-center font-medium text-sm sm:text-base whitespace-nowrap overflow-hidden">
                           {form.tempoAproximado || "⏳ Defina duração"}
                         </div>
                       </div>

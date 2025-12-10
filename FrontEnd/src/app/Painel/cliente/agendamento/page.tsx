@@ -418,17 +418,35 @@ export default function AgendamentoClient() {
                             <label className="text-emerald-400 font-semibold text-xs sm:text-sm">
                               💅 Quantidade:
                             </label>
-                            <input
-                              type="number"
-                              min={1}
-                              max={10}
-                              className="w-16 sm:w-20 p-1.5 sm:p-2 bg-white/10 backdrop-blur-sm border border-emerald-500 rounded-lg text-white text-center font-bold focus:border-emerald-400 focus:outline-none transition-colors text-sm"
-                              value={quantidadesAdicionais[a.nome] || 1}
-                              onChange={e => {
-                                const val = Math.max(1, Math.min(10, Number(e.target.value)));
-                                setQuantidadesAdicionais(q => ({ ...q, [a.nome]: val }));
-                              }}
-                            />
+                            <div className="flex items-center gap-1 sm:gap-2">
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const atual = quantidadesAdicionais[a.nome] || 1;
+                                  if (atual > 1) {
+                                    setQuantidadesAdicionais(q => ({ ...q, [a.nome]: atual - 1 }));
+                                  }
+                                }}
+                                className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-lg transition-all transform active:scale-95 flex items-center justify-center text-lg sm:text-xl shadow-lg"
+                              >
+                                −
+                              </button>
+                              <span className="w-10 sm:w-12 text-center text-white font-bold text-lg sm:text-xl bg-white/10 backdrop-blur-sm border border-emerald-500 rounded-lg py-1.5 sm:py-2">
+                                {quantidadesAdicionais[a.nome] || 1}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const atual = quantidadesAdicionais[a.nome] || 1;
+                                  if (atual < 10) {
+                                    setQuantidadesAdicionais(q => ({ ...q, [a.nome]: atual + 1 }));
+                                  }
+                                }}
+                                className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold rounded-lg transition-all transform active:scale-95 flex items-center justify-center text-lg sm:text-xl shadow-lg"
+                              >
+                                +
+                              </button>
+                            </div>
                           </div>
                         )}
                       </div>
